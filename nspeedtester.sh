@@ -16,16 +16,16 @@ do
     cat & speedtest --share | tee ./speedtest-tempRaw |  grep -e 'Download:\|Upload:\|results:' >> ./speedtest-summary
     printf "\n\r" >> ./speedtest-summary
     varDSum=$(cat ./speedtest-summary | grep 'Download:' | awk '{print $2}' | awk '{x+=$1}END{print $1}')
-    varDLines=$(cat ./speedtest-summary | awk 'END{print NR}')
-    varUSum=$(cat ./speedtest-summary | grep 'Download:' | awk '{print $2}' | awk '{x+=$1}END{print $1}')
-    varULines=$(cat ./speedtest-summary | awk 'END{print NR}')
+    varDLines=$(cat ./speedtest-summary | grep 'Download:' | awk 'END{print NR}')
+    varUSum=$(cat ./speedtest-summary | grep 'Upload:' | awk '{print $2}' | awk '{x+=$1}END{print $1}')
+    varULines=$(cat ./speedtest-summary | grep 'Upload:' | awk 'END{print NR}')
     varShare=$(cat ./speedtest-tempRaw | grep 'results:' | awk '{print $3}')
     varShareSerial=${varShare##*/}
     varShareSerial=${varShareSerial%.png}
     varDSpeed=$(echo "scale=2; $varDSum / $varDLines" | bc -l)
     varUSpeed=$(echo "scale=2; $varUSum / $varULines" | bc -l)
     echo $varDate 'Average DOWNLOAD:' $varDSpeed 'Mbps Average UPLOAD:' $varUSpeed 'Mbps' 'SHARE:' $varShare | tee  -a ./speedtest-status
-{
+    {
     # Download the URL in a separate folder
     if [ ! -d "./speedtest-share" ]; then
         mkdir ./speedtest-share
@@ -34,6 +34,6 @@ do
 	mkdir ./speedtest-share/$varShortDate
     fi
     wget -O ./speedtest-share/$varShortDate/$varTime-$varShareSerial.png $varShare
-} &> /dev/null
+    } &> /dev/null
     sleep 15m
 done
