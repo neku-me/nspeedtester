@@ -27,6 +27,7 @@ do
     echo $varDate 'Average DOWNLOAD:' $varDSpeed 'Mbps Average UPLOAD:' $varUSpeed 'Mbps' 'SHARE:' $varShare | tee  -a ./speedtest-status
     {
     # Download shareable images to 'speedtest-share' folder
+    # Modified again
     if [ ! -d "./speedtest-share" ]; then
         mkdir ./speedtest-share
     fi
