@@ -26,7 +26,7 @@ do
     varUSpeed=$(echo "scale=2; $varUSum / $varULines" | bc -l)
     echo $varDate 'Average DOWNLOAD:' $varDSpeed 'Mbps Average UPLOAD:' $varUSpeed 'Mbps' 'SHARE:' $varShare | tee  -a ./speedtest-status
     {
-    # Download the URL in a separate folder
+    # Download shareable images to 'speedtest-share' folder
     if [ ! -d "./speedtest-share" ]; then
         mkdir ./speedtest-share
     fi
