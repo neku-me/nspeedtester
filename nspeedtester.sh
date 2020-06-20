@@ -28,6 +28,7 @@ do
     {
     # Download shareable images to 'speedtest-share' folder
     # Modified again
+    # Username test
     if [ ! -d "./speedtest-share" ]; then
         mkdir ./speedtest-share
     fi
