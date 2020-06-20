@@ -15,9 +15,9 @@ do
     echo $varDate >> ./speedtest-summary
     cat & speedtest --share | tee ./speedtest-tempRaw |  grep -e 'Download:\|Upload:\|results:' >> ./speedtest-summary
     printf "\n\r" >> ./speedtest-summary
-    varDSum=$(cat ./speedtest-summary | grep 'Download:' | awk '{print $2}' | awk '{x+=$1}END{print $1}')
+    varDSum=$(cat ./speedtest-summary | grep 'Download:' | awk '{print $2}' | awk '{x+=$1}END{print x}')
     varDLines=$(cat ./speedtest-summary | grep 'Download:' | awk 'END{print NR}')
-    varUSum=$(cat ./speedtest-summary | grep 'Upload:' | awk '{print $2}' | awk '{x+=$1}END{print $1}')
+    varUSum=$(cat ./speedtest-summary | grep 'Upload:' | awk '{print $2}' | awk '{x+=$1}END{print x}')
     varULines=$(cat ./speedtest-summary | grep 'Upload:' | awk 'END{print NR}')
     varShare=$(cat ./speedtest-tempRaw | grep 'results:' | awk '{print $3}')
     varShareSerial=${varShare##*/}
@@ -35,5 +35,5 @@ do
     fi
     wget -O ./speedtest-share/$varShortDate/$varTime-$varShareSerial.png $varShare
     } &> /dev/null
-    sleep 15m
+    sleep 60m
 done
