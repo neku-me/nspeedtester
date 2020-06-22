@@ -1,11 +1,6 @@
 #! /bin/bash
-#{
+{
 cd ~/
-#rm ./x-speedtest-summary ./x-speedtest-status ./x-speedtest-tempRaw
-#mv ./speedtest-summary ./x-speedtest-summary
-#mv ./speedtest-status ./x-speedtest-status
-#mv ./speedtest-tempRaw ./x-speedtest-tempRaw
-
 # make folders
 if [ ! -d "./nspeedtester" ]; then
     mkdir ./nspeedtester
@@ -23,7 +18,7 @@ if [ ! -d "./nspeedtester/share" ]; then
     mkdir ./nspeedtester/share
 fi
 
-#} &> /dev/null
+} &> /dev/null
 
 while true
 do
@@ -44,14 +39,11 @@ do
     varDSpeed=$(echo "scale=2; $varDSum / $varDLines" | bc -l)
     varUSpeed=$(echo "scale=2; $varUSum / $varULines" | bc -l)
     echo $varDate 'Average DOWNLOAD:' $varDSpeed 'Mbps Average UPLOAD:' $varUSpeed 'Mbps' 'SHARE:' $varShare | tee  -a ./nspeedtester/terminal-display/terminal-display-$varShortDate.txt
-#    {
-    # Download shareable images to 'speedtest-share' folder
-    # Modified again
-    # Username test 
+    {
     if [ ! -d "./nspeedtester/share/$varShortDate" ]; then
     mkdir ./nspeedtester/share/$varShortDate
     fi
     wget -O ./nspeedtester/share/$varShortDate/$varTime-$varShareSerial.png $varShare
-#    } &> /dev/null
-    #sleep 60m
+    } &> /dev/null
+    sleep 60m
 done
