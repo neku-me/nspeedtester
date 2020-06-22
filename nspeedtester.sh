@@ -23,7 +23,6 @@ do
     varDate=$(date)
     varShortDate=$(date +%m-%d-%Y)
     varTime=$(echo $varDate | awk '{print $4}' | sed 's/\:/\-/g')
-
     echo $varDate >> ./nspeedtester/summary/summary-$varShortDate.txt
     cat & speedtest --share | tee ./nspeedtester/raw/tempRaw-$varShortDate.txt |  grep -e 'Download:\|Upload:\|results:' >> ./nspeedtester/summary/summary-$varShortDate.txt
     printf "\n\r" >> ./nspeedtester/summary/summary-$varShortDate.txt
