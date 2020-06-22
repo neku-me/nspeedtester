@@ -1,7 +1,6 @@
 #! /bin/bash
 {
 cd ~/
-# make folders
 if [ ! -d "./nspeedtester" ]; then
     mkdir ./nspeedtester
 fi
@@ -17,7 +16,6 @@ fi
 if [ ! -d "./nspeedtester/share" ]; then
     mkdir ./nspeedtester/share
 fi
-
 } &> /dev/null
 
 while true
